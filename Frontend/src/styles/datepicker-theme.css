@@ -1,0 +1,367 @@
+/* Theme overrides for react-datepicker to match Bootstrap / app theme */
+
+/*
+  Datepicker accent color
+  User requested: #C11A06
+*/
+:root {
+  --dp-accent: #c11a06;
+  --dp-accent-hover: #c11a06;
+  --dp-accent-rgb: 193, 26, 6;
+}
+
+.app-datepicker-popper,
+.react-datepicker-popper {
+  z-index: 2000 !important; /* above Bootstrap offcanvas/backdrop */
+}
+
+/* Ensure daterangepicker popover isn't hidden behind headers/menus */
+.daterangepicker {
+  z-index: 3005;
+}
+
+/* Task: date range trigger polish */
+.task-daterange-btn {
+  gap: 0.25rem;
+}
+
+.task-daterange-btn .task-daterange-clear {
+  line-height: 1;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.task-daterange-btn .task-daterange-clear:hover {
+  opacity: 1;
+  color: #111;
+}
+
+/* Task: starred icon colors (match design: grey outline -> yellow filled) */
+.task-star-btn {
+  color: #c0c7d1; /* soft grey */
+  line-height: 1;
+}
+
+.task-star-btn i {
+  color: currentColor;
+}
+
+.task-star-btn:hover {
+  color: #98a2b3;
+}
+
+.task-star-btn.is-starred {
+  color: #f4b400; /* warm yellow */
+}
+
+.task-star-btn.is-starred:hover {
+  color: #e6a800;
+}
+
+/* Make date fields less wide on desktop while staying responsive */
+.app-date-field {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .app-date-field {
+    max-width: 320px;
+  }
+}
+
+/* Input group polish */
+.app-date-input {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+
+.app-date-input .input-group-text {
+  min-width: 44px;
+  justify-content: center;
+  padding: 0.35rem 0.65rem;
+  border: 0;
+}
+
+.app-date-input .form-control {
+  cursor: pointer;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.95rem;
+  border: 0;
+}
+
+.app-date-input .input-group-text,
+.app-date-input .form-control {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.app-date-input .form-control:focus {
+  box-shadow: none;
+}
+
+.app-date-input:focus-within {
+  border-color: rgba(var(--dp-accent-rgb), 0.55);
+  box-shadow: 0 0 0 0.2rem rgba(var(--dp-accent-rgb), 0.18);
+}
+
+.app-date-input .form-control:disabled {
+  cursor: not-allowed;
+}
+
+.app-datepicker.react-datepicker {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  /* IMPORTANT: keep visible so month/year dropdown panels aren't clipped */
+  overflow: visible;
+  box-shadow: 0 0.85rem 2rem rgba(0, 0, 0, 0.18);
+  font-family: inherit;
+}
+
+.app-datepicker .react-datepicker__month-container {
+  background: #fff;
+  /* keep rounded corners without clipping dropdown overlays */
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.app-datepicker .react-datepicker__header {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--dp-accent-rgb), 1) 0%,
+    rgba(var(--dp-accent-rgb), 0.88) 55%,
+    rgba(var(--dp-accent-rgb), 1) 100%
+  );
+  border-bottom: none;
+  /* extra side padding so nav arrows never overlap dropdowns */
+  padding: 14px 44px 10px;
+}
+
+.app-datepicker .react-datepicker__current-month {
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  margin-bottom: 6px;
+}
+
+/* Make month/year controls a clean row and prevent overlap */
+.app-datepicker .react-datepicker__header__dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+/* react-datepicker uses a different class for scroll dropdown mode */
+.app-datepicker .react-datepicker__header__dropdown--scroll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.app-datepicker .react-datepicker__day-names {
+  margin-top: 8px;
+}
+
+.app-datepicker .react-datepicker__day-name {
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+  font-size: 0.78rem;
+  width: 2.15rem;
+  line-height: 2.15rem;
+  margin: 0.1rem;
+}
+
+.app-datepicker .react-datepicker__navigation {
+  top: 16px;
+}
+
+.app-datepicker .react-datepicker__navigation--previous {
+  left: 12px;
+}
+
+.app-datepicker .react-datepicker__navigation--next {
+  right: 12px;
+}
+
+.app-datepicker .react-datepicker__navigation-icon::before {
+  border-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Dropdowns (month/year) */
+.app-datepicker .react-datepicker__month-dropdown-container,
+.app-datepicker .react-datepicker__year-dropdown-container {
+  margin: 0;
+}
+
+.app-datepicker .react-datepicker__month-select,
+.app-datepicker .react-datepicker__year-select {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  padding: 0.3rem 0.55rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Scroll dropdown mode uses "read view" elements instead of <select> */
+.app-datepicker .react-datepicker__month-read-view,
+.app-datepicker .react-datepicker__year-read-view {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 10px;
+  padding: 0.32rem 0.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.app-datepicker .react-datepicker__month-read-view:hover,
+.app-datepicker .react-datepicker__year-read-view:hover {
+  background: rgba(255, 255, 255, 0.26);
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.app-datepicker .react-datepicker__month-read-view:active,
+.app-datepicker .react-datepicker__year-read-view:active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.app-datepicker .react-datepicker__month-read-view {
+  min-width: 120px;
+}
+
+.app-datepicker .react-datepicker__year-read-view {
+  min-width: 90px;
+}
+
+.app-datepicker .react-datepicker__month-read-view--down-arrow,
+.app-datepicker .react-datepicker__year-read-view--down-arrow {
+  display: none;
+}
+
+/* Also hide native select arrows when dropdownMode="select" is used */
+.app-datepicker .react-datepicker__month-select,
+.app-datepicker .react-datepicker__year-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: none;
+}
+
+.app-datepicker .react-datepicker__month-dropdown,
+.app-datepicker .react-datepicker__year-dropdown {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 0.85rem 2rem rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+/* Make the scroll dropdown lists actually scrollable */
+.app-datepicker .react-datepicker__month-dropdown,
+.app-datepicker .react-datepicker__year-dropdown {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.app-datepicker .react-datepicker__month-option,
+.app-datepicker .react-datepicker__year-option {
+  padding: 8px 12px;
+  font-weight: 600;
+}
+
+.app-datepicker .react-datepicker__month-option:hover,
+.app-datepicker .react-datepicker__year-option:hover {
+  background: rgba(var(--dp-accent-rgb), 0.1);
+}
+
+.app-datepicker .react-datepicker__month-option--selected,
+.app-datepicker .react-datepicker__year-option--selected {
+  background: rgba(var(--dp-accent-rgb), 0.18);
+}
+
+/* Remove the extra margin react-datepicker adds at the bottom of option list */
+.app-datepicker .react-datepicker__month-option:last-child,
+.app-datepicker .react-datepicker__year-option:last-child {
+  margin-bottom: 0;
+}
+
+.app-datepicker .react-datepicker__month-select {
+  min-width: 120px;
+}
+
+.app-datepicker .react-datepicker__year-select {
+  min-width: 90px;
+}
+
+.app-datepicker .react-datepicker__month-select:focus,
+.app-datepicker .react-datepicker__year-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(var(--dp-accent-rgb), 0.35);
+}
+
+.app-datepicker .react-datepicker__month-select option,
+.app-datepicker .react-datepicker__year-select option {
+  color: #111;
+}
+
+/* Day grid */
+.app-datepicker .react-datepicker__month {
+  margin: 0.6rem;
+}
+
+.app-datepicker .react-datepicker__day {
+  width: 2.15rem;
+  line-height: 2.15rem;
+  height: 2.15rem;
+  margin: 0.1rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.app-datepicker .react-datepicker__day:hover {
+  background-color: rgba(var(--dp-accent-rgb), 0.12);
+}
+
+.app-datepicker .react-datepicker__day--today {
+  box-shadow: inset 0 0 0 1px rgba(var(--dp-accent-rgb), 0.55);
+}
+
+.app-datepicker .react-datepicker__day--selected,
+.app-datepicker .react-datepicker__day--keyboard-selected {
+  background-color: var(--dp-accent);
+  color: #fff;
+}
+
+.app-datepicker .react-datepicker__day--selected:hover,
+.app-datepicker .react-datepicker__day--keyboard-selected:hover {
+  background-color: var(--dp-accent-hover);
+  color: #fff;
+}
+
+.app-datepicker .react-datepicker__day--outside-month {
+  opacity: 0.35;
+}
+
+.app-datepicker .react-datepicker__day--disabled,
+.app-datepicker .react-datepicker__day--disabled:hover {
+  opacity: 0.25;
+  background: transparent;
+  cursor: not-allowed;
+}
+
+.app-datepicker .react-datepicker__triangle {
+  display: none;
+}
